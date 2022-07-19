@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+     {% csrf_token %}
+
+
+        {% for i in voca_data %}
+    <div style="display: flex;"> 
+      <div style="background-color: yellow; margin-top:5%; width: 5%; height: 100px;">
+        단어장 추가 또는 단어 외움 체크
+      </div>
+
+      <div class="container-lg">
+        <div class="alert alert-light" role="alert" style ="margin-top:3%; width: 100%;">  
+          <div class="row">
+            <div class = "col-1" style="color : #3264FA; font-size : 1rem; text-align:center; margin-top:1%;">{{i.5}}</div>
+            <div class = "col-5" style="color : black; font-size : 3rem; text-align:center; margin-top:1%;">{{i.0}}</div>
+            <div class = "col-6" style="color : #5ABEFA; font-size : 1.5rem; text-align:center; margin-top:1%;">{{i.1|linebreaks}}</div>
+          </div>
+          <div class="row">
+            <div class="col-6" style="color : black; font-size : 1.5rem; text-align:center; margin-top:1%;">{{i.7}}</div>
+            <div class="col-6" style="color : black; font-size : 1rem; text-align:center; margin-top:1%;">유의어 : {{i.6}}</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background-color: skyblue; margin-top:5%; width: 5%; height: 100px;">
+        다른 기능 추가
+      </div>
+  </div>
+        {% endfor %}
+
+        {% if param == 1 %}
+        <div class='row'  style="text-align: center; margin:5% 15% 5% 16%;">
+          <div class='col-md-3' style=" background-color:white; margin-left:4%; margin-right:4%; border-radius:10px;">             
+              <a href=""></a>
+          </div>
+
+          <div class='col-md-3' style=" background-color:white; margin-left:4%; margin-right:4%; border-radius:10px;">             
+            <a href="http://127.0.0.1:8000/board/GRE/page{{list_page}}/">{{list_page_ment}}</a>
+          </div>
+
+          <div class='col-md-3' style=" background-color:white; margin-left:4%; margin-right:4%; border-radius:10px;">             
+              <a href="http://127.0.0.1:8000/board/GRE/{{next_page}}/">{{next_page_ment}}</a>
+          </div>
+        </div>
+
+        {% elif param == len_page %}
+
+        <div class='row'  style="text-align: center; margin:5% 15% 5% 16%;">
+          <div class='col-md-3' style=" background-color:white; margin-left:4%; margin-right:4%; border-radius:10px;">             
+              <a href="http://127.0.0.1:8000/board/alphabet/{{prev_page}}/">{{prev_page_ment}}</a>
+          </div>
+
+          <div class='col-md-3' style=" background-color:white; margin-left:4%; margin-right:4%; border-radius:10px;">             
+            <a href="http://127.0.0.1:8000/board/alphabet/page{{list_page}}/">{{list_page_ment}}</a>
+          </div>
+
+          <div class='col-md-3' style=" background-color:white; margin-left:4%; margin-right:4%; border-radius:10px;">             
+            <a href=""></a>
+           </div>
+        </div>
+
+        {% else %}
+
+        <div class='row'  style="text-align: center; margin:5% 15% 5% 16%;">
+          <div class='col-md-3' style=" background-color:white; margin-left:4%; margin-right:4%; border-radius:10px;">             
+              <a href="http://127.0.0.1:8000/board/alphabet/{{prev_page}}/">{{prev_page_ment}}</a>
+          </div>
+
+          <div class='col-md-3' style=" background-color:white; margin-left:4%; margin-right:4%; border-radius:10px;">             
+            <a href="http://127.0.0.1:8000/board/alphabet/page{{list_page}}/">{{list_page_ment}}</a>
+          </div>
+
+          <div class='col-md-3' style=" background-color:white; margin-left:4%; margin-right:4%; border-radius:10px;">             
+              <a href="http://127.0.0.1:8000/board/alphabet/{{next_page}}/">{{next_page_ment}}</a>
+          </div>
+        </div>
+
+        
+
+        {% endif %}
+
+{% endblock %}

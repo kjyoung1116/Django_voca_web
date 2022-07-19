@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+     {% csrf_token %}
+
+        <div class="wrapper" style="text-align: center; background-color:white; margin:5% 15% 5% 15%; border-radius:10px;">
+            <br><br><br>
+            <h1>Sign up</h1>
+            <form method="POST">
+                {% csrf_token %}
+                <br>ID: <br>
+                <input id='login_signup_bar' name="username" type="text" autocomplete="off" style='border-radius:5px; margin:10px; width:65%; height:35px; border-color:#E3E4E7'>
+                <br>
+                <br>Password: <br>
+                <input name="password1" type="password" autocomplete="off" style='border-radius:5px; margin:10px; width:65%; height:35px; border-color:#E3E4E7'>
+                <br>
+                <br>Confirm Password: <br>
+                <input name="password2" type="password" autocomplete="off" style='border-radius:5px; margin:10px; width:65%; height:35px; border-color:#E3E4E7'>
+                <br>
+                <br>Email: <br>
+                <input name="email" type="email" autocomplete="off" style='border-radius:5px; margin:10px; width:65%; height:35px; border-color:#E3E4E7'>
+                <br><br>
+                <input type="submit" class="btn btn-primary" value="Sign Up" style='border-radius:5px;'>
+                <br><br><br>
+                <a href="http://127.0.0.1:8000/accounts/login">Login</a>
+             <br><br><br>
+            </form>
+        </div>
+
+{% endblock %}

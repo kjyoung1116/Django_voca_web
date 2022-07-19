@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- jQuery -->
+  <script type="text/javascript" src="{% static '../static/jquery.min.js' %}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{% static '../static/popper.min.js' %}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{% static '../static/bootstrap.min.js' %}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{% static '../static/mdb.min.js' %}"></script>
+  <!-- Your custom scripts (optional) -->
+  <script type="text/javascript" src="{% static '../static/surf.js' %}"></script>
+
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>KJY Voca</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="../static/bootstrap.min.css">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="../static/mdb.min.css">
+  <!-- Your custom styles (optional) -->
+  <link rel="stylesheet" href="../static/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .h1, .h2, .h3, .h4, .h5, .h7, h1, h2, h3, h4, h5, h7 {
+      margin-top: 0;
+      margin-bottom: 0;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+    .btn.btn-block {
+      margin: unset;
+    }
+    .btn-block + .btn-block {
+      margin-top: 0.5rem;
+    }
+    a.waves-effect, a.waves-light {
+      display: block;
+    }
+  </style>
+    
+    
+</head>
+<body style="background-color: #E3E4E7; padding-left: 10vw; padding-right: 10vw; padding-top: 5vw; padding-bottom: 5vw; margin-left: 5vw; margin-right: 5vw;">
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
+          
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <div class="collapse navbar-collapse justify-content-center" id="navbarsExample03">
+            <ul class="navbar-nav">
+              <a class="navbar-brand" href="http://127.0.0.1:8000/board/" style="font-weight:bold;"><img style="height:32px;"alt="Brand" src="{% static 'images/006.jpg' %}">KJY Voca</a>
+              <a class="nav-link active ml-2 mr-2" class="btn" href="http://127.0.0.1:8000/board/">Home</a>
+              <a class="nav-link active ml-2 mr-2" class="btn" href="http://127.0.0.1:8000/board/">Today</a>
+           
+              {% if user.is_active %} <!-- 로그인 상태면 실행 -->
+              <li class="nav-item">
+                <a class="nav-link active ml-2 mr-2" class="btn" href="http://127.0.0.1:8000/board/profile">Profile</a>
+              </li>
+              
+                
+              <li>
+                <a class="nav-link active ml-2 mr-2" id="logout_btn" class="btn">Logout</a>
+              </li>
+                
+                
+                
+              {% else %} <!-- 로그인 되지 않은 상태면 실행 -->
+              <li class="nav-item">
+                  <a class="nav-link ml-2 mr-2" href="http://127.0.0.1:8000/accounts/login">Login</a>
+              </li>
+              {% endif %}
+
+              <li>
+                <form class="d-flex" method="get" action="{% url 'search_app:search' %}">
+                  <input class="form-control ml-2" style="font-size: 1rem;" type="search" placeholder="영단어 검색" name="q" aria-label="Search">
+                </form>
+              </li>
+            </ul>           
+            
+          </div>
+        </nav>
+      </header>
+      
+        {% block content %}
+        
+
+        {% endblock %}
+
+        <!-- 부트스트랩 로그아웃 모달 -->
+        <div class="modal fade" id="logout_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">{{ user }}</h5>
+                      <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">X</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">로그아웃 하시겠습니까?</div>
+                  <div class="modal-footer">
+                      <a class="btn" id="modalY" href="http://127.0.0.1:8000/accounts/logout">예</a>
+                      <button class="btn" type="button" data-dismiss="modal">아니요</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <script>
+        $('#logout_btn').click(function(e){
+          e.preventDefault();
+          $('#logout_modal').modal("show");
+        });
+      </script>
+
+</body>
+</html>
+    

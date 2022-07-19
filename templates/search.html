@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+     {% csrf_token %}
+      <div class="container-lg">
+        <p>"{{query}}" 검색 결과입니다.</p>
+      </div>
+      <br>
+      <div class="container-lg">
+        {{no_data}}
+      </div>
+        {% for i in voca_data %}
+        
+        <div class="container-lg">
+          <div class="alert alert-light" role="alert" style ="margin-top:3%;">  
+            <div class="row">
+              <div class = "col-6" style="color : #3264FA; font-size : 3rem; text-align:center; margin-top:1%;">{{i.0}}</div>
+              <div class = "col-6" style="color : #5ABEFA; font-size : 1.5rem; text-align:center; margin-top:1%;">{{i.1|linebreaks}}</div>
+            </div>
+            <div class="row">
+              <div class="col-6" style="color : black; font-size : 1.5rem; text-align:center; margin-top:1%;">{{i.2}}</div>
+              <div class="col-6" style="color : black; font-size : 1rem; text-align:center; margin-top:1%;">유의어 : {{i.6}}</div>
+            </div>
+          </div>
+      </div>
+
+        {% endfor %}
+       
+
+
+{% endblock %}
+

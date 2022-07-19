@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+     {% csrf_token %}
+        
+        <div class="wrapper" style="text-align: center; background-color:white; margin:5% 15% 5% 15%; border-radius:10px;">
+            <br><br><br><br>
+            <h1>Login</h1>
+            <form method="POST">
+                {% csrf_token %}
+                <br>ID: <br>
+                <input name="username" type="text" style='text-align: center; border-radius:5px; margin:10px; width:65%; height:35px; border-color:#E3E4E7;'>
+                <br>
+                <br>Password: <br>
+                <input name="password" type="password" autocomplete="off" style='text-align: center; border-radius:5px; margin:10px; width:65%; border-color:#E3E4E7;'>
+                <br><br>
+                <input type="submit" class="btn btn-primary" value="Login" style='text-align: center; border-radius:5px;'>
+                <br><br><br>
+                <h6>아이디 또는 비밀번호를 잘못 입력했습니다.</h6>
+                <br>
+                <a href="https://django-odynj.run.goorm.io/accounts/signup">Sign up</a>
+
+             <br><br><br><br><br>
+            </form>
+        </div>
+
+{% endblock %}

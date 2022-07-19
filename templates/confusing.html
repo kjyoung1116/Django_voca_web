@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+     {% csrf_token %}
+
+        {% for i in confusing_len %}
+
+          <div class="list-group">
+            <a href="http://127.0.0.1:8000/board/confusing/{{i}}/" class="list-group-item list-group-item-action" aria-current="true">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{i}}</h5>
+              </div>
+              <p class="mb-2 text-center" style="font-size: 1.5rem;">혼동하기 쉬운 영단어 {{i}}</p>
+              <p class="text-center" style="font-size: 1.0rem;">(10단어)</p>
+            </a>
+          </div>
+        {% endfor %}
+
+          <div class="wrapper" style="text-align: center; background-color:white; margin:5% 35% 5% 35%; border-radius:10px;">             
+            <a href="http://127.0.0.1:8000/board/confusing/{{next_page}}/">다음 10 단어</a>
+        </div>
+
+{% endblock %}

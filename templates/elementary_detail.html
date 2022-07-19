@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+     {% csrf_token %}
+
+        {% for i in voca_data %}
+
+        <div class="container-lg">
+          <div class="alert alert-light" role="alert" style ="margin-top:3%;">  
+            <div class="row">
+              <div class = "col-1" style="color : #3264FA; font-size : 1rem; text-align:center; margin-top:1%;">{{i.5}}</div>
+              <div class = "col-5" style="color : #3264FA; font-size : 3rem; text-align:center; margin-top:1%;">{{i.0}}</div>
+              <div class = "col-6" style="color : #5ABEFA; font-size : 1.5rem; text-align:center; margin-top:1%;">{{i.1|linebreaks}}</div>
+            </div>
+            <div class="row">
+              <div class="col-6" style="color : black; font-size : 1.5rem; text-align:center; margin-top:1%;">{{i.2}}</div>
+              <div class="col-6" style="color : black; font-size : 1rem; text-align:center; margin-top:1%;">유의어 : {{i.6}}</div>
+            </div>
+          </div>
+      </div>
+
+        {% endfor %}
+       
+      <div class="wrapper" style="text-align: center; background-color:white; margin:5% 35% 5% 35%; border-radius:10px;">             
+          <a href="http://127.0.0.1:8000/board/elementary/{{next_page}}/">{{page_ment}}</a>
+      </div>
+      
+
+{% endblock %}
