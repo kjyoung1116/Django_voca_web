@@ -1,8 +1,8 @@
-import pandas as pd
+from re import S
+import openpyxl
 
-data = pd.read_excel('voca.xlsx')
-data_filtered = data.loc[data['장르']=='K_SAT']
+wb = openpyxl.load_workbook('voca.xlsx') 
+ws = wb['Sheet1']
 
-print(len(data_filtered))
+print(ws["h2"].value.replace('1.','/'))
 
-print(1033 //10 +1)

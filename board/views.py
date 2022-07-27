@@ -306,6 +306,7 @@ def GRE_detail(request, param):
     number = range((int(param)-1)*10+1,int(param)*10+10)
     synonym = data_filtered2['유의어']
 
+
     voca_data = []
 
     for i in zip(voca,meaning,sentence, significance, difficulty, number,synonym):
