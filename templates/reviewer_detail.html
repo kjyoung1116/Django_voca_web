@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+{% block content %}
+    <h2>
+        All Cards
+    </h2>
+    <a href="{% url 'reviewer:new_card' %}" role="button">
+        ✨ Create New Card
+    </a>
+    {% for card in card_list %}
+    {% ifchanged %}
+        <h3>🗃 {{ card.box | ordinal }} Box</h3>
+    {% endifchanged %}
+    {% include "reviewer_detail2.html" %}
+{% endfor %}
+{% endblock content %}

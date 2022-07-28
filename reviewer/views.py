@@ -3,9 +3,10 @@ from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.models import User as user_model
 from soupsieve import select
 from reviewer.forms import CreateReviewSettingsForm
-from .models import REVIEWING_INTENSITY, review_settings
+from .models import review_settings, Card
 import pandas as pd
-
+from django.views.generic import (ListView,CreateView,UpdateView,)
+from django.urls import reverse_lazy
 # Create your views here.
 def index(request):
     return render(request, '../templates/reviewer.html')
@@ -39,25 +40,22 @@ def reviewer_create(request):
 def my_reviewers(request):
     user = get_object_or_404(user_model, pk=request.user.id)
     my_reviewers = review_settings.objects.filter(user_id = user)
-    if my_reviewers.selected_voca == all:
-        data = pd.read_excel('voca.xlsx')
-        
-        voca = data['단어']
-        meaning = data['의미']
-        sentence = data['예문']
-        significance = data['중요도']
-        difficulty = data['난이도']
-        number = data['번호']
-        synonym = data['유의어']
-
-    voca_data = []
-
-    for i in zip(voca,meaning,sentence, significance, difficulty, number,synonym):
-        voca_data.append(i)
-
-
-
-
 
     return render(request, '../templates/my_reviewers.html', {'my_reviewers': my_reviewers})
 
+
+
+class reviewer_detail(ListView):
+    model = Card
+    queryset = Card.objects.all().order_by("box", "-date_created")
+    template_name = 'reviewer_detail.html'
+
+class new_card(CreateView):
+    model = Card
+    fields = ["question", "answer", "box", "addition1", "addition2", "addition3", "addition4", "addition5", "addition6", "addition7", "addition8", "addition9", "addition0"]
+    success_url = reverse_lazy("reviewer:new_card")
+    template_name = 'reviewer_new_card.html'
+
+class update_card(new_card, UpdateView):
+    success_url = reverse_lazy("reviewer:reviewer_detail")
+    template_name = 'reviewer_update_card.html'

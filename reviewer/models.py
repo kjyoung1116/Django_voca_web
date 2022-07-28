@@ -1,4 +1,3 @@
-from asyncio import selector_events
 from django.db import models
 from platformdirs import user_cache_dir
 from django.contrib.auth.models import User as user_model
@@ -52,3 +51,31 @@ class review_settings(TimeStampedModel):
     purpose = models.CharField(
         blank=True,
         max_length=255)
+
+###############################################################
+
+NUM_BOXES = 5
+BOXES = range(1, NUM_BOXES + 1)
+
+class Card(models.Model):
+    question = models.CharField(max_length=100)
+    answer = models.CharField(max_length=100)
+    #추가 사항들 ex) 예문, 발음기호 등
+    addition1 =models.CharField(max_length=100, blank=True, default='')
+    addition2 =models.CharField(max_length=100, blank=True, default='')
+    addition3 =models.CharField(max_length=100, blank=True, default='')
+    addition4 =models.CharField(max_length=100, blank=True, default='')
+    addition5 =models.CharField(max_length=100, blank=True, default='')
+    addition6 =models.CharField(max_length=100, blank=True, default='')
+    addition7 =models.CharField(max_length=100, blank=True, default='')
+    addition8 =models.CharField(max_length=100, blank=True, default='')
+    addition9 =models.CharField(max_length=100, blank=True, default='')
+    addition0 =models.CharField(max_length=100, blank=True, default='')
+    box = models.IntegerField(
+        choices=zip(BOXES, BOXES),
+        default=BOXES[0],
+    )
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.question

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'search_app',
     'django.contrib.sites',
     'reviewer',
+    "django.contrib.humanize",
     # allauth
     'allauth',
     'allauth.account',
