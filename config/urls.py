@@ -25,5 +25,5 @@ urlpatterns = [
     path('board/', include('board.urls')),
     path('accounts/', include('accounts.urls')),
     path('search/', include('search_app.urls')),
-    path('google/', include('allauth.urls')),
+    path('reviewer/', include('reviewer.urls')),
 ] + static(settings.MEDIA_URL, document_ROOT=settings.MEDIA_ROOT)

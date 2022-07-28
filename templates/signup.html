@@ -4,7 +4,7 @@
 
      {% csrf_token %}
 
-        <div class="wrapper" style="text-align: center; background-color:white; margin:5% 15% 5% 15%; border-radius:10px;">
+        <div class="wrapper" style="text-align: center; background-color:white; margin:0% 15% 0% 15%; border-radius:10px;">
             <br><br><br>
             <h1>Sign up</h1>
             <form method="POST">
@@ -20,6 +20,13 @@
                 <br>
                 <br>Email: <br>
                 <input name="email" type="email" autocomplete="off" style='border-radius:5px; margin:10px; width:65%; height:35px; border-color:#E3E4E7'>
+                <br>
+                <br>Date of birth: <br>
+                <input name="first_name" type="text" autocomplete="off" placeholder="DD-MM-YYYY" style='border-radius:5px; margin:10px; width:65%; height:35px; border-color:#E3E4E7'>
+                <br>
+                <br>Gender: <br>
+                <input name="last_name" type="text" autocomplete="off" placeholder="Optional (남성, 여성)" style='border-radius:5px; margin:10px; width:65%; height:35px; border-color:#E3E4E7'>
+                <br>
                 <br><br>
                 <input type="submit" class="btn btn-primary" value="Sign Up" style='border-radius:5px;'>
                 <br><br><br>

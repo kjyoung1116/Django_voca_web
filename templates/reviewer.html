@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+reviewer page.
+<div>
+    <a href="{% url 'reviewer:reviewer_create' %}">새로운 플랜 생성하기</a>
+</div>
+
+<div> 
+    <a href = "{% url 'reviewer:my_reviewers' %}"> 진행중인 플랜 1</a> 
+</div>
+{% endblock %}
