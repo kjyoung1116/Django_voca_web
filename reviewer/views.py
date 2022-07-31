@@ -1,5 +1,5 @@
 from msilib import CreateRecord
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.models import User as user_model
 from soupsieve import select
 from reviewer.forms import CreateReviewSettingsForm
@@ -7,6 +7,8 @@ from .models import review_settings, Card
 import pandas as pd
 from django.views.generic import (ListView,CreateView,UpdateView,)
 from django.urls import reverse_lazy
+from .forms import CardCheckForm
+
 # Create your views here.
 def index(request):
     return render(request, '../templates/reviewer.html')
@@ -59,3 +61,25 @@ class new_card(CreateView):
 class update_card(new_card, UpdateView):
     success_url = reverse_lazy("reviewer:reviewer_detail")
     template_name = 'reviewer_update_card.html'
+
+
+class box_view(reviewer_detail):
+    template_name = "reviewer_box.html"
+    form_class = CardCheckForm
+    def get_queryset(self):
+        return Card.objects.filter(box=self.kwargs["box_num"])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["box_number"] = self.kwargs["box_num"]
+        if self.object_list:
+            context["check_card"] = self.object_list
+        return context
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            card = get_object_or_404(Card, id=form.cleaned_data["card_id"])
+            card.move(form.cleaned_data["knowing_level"])
+
+        return redirect(request.META.get("HTTP_REFERER"))

@@ -11,6 +11,7 @@ urlpatterns = [
     path("detail",views.reviewer_detail.as_view(),name="reviewer_detail"),
     path("new_card",views.new_card.as_view(),name="new_card"),
     path("update_card/<int:pk>",views.update_card.as_view(),name="update_card"),
+    path("box/<int:box_num>", views.box_view.as_view(),name="box"),
 ]
 
 

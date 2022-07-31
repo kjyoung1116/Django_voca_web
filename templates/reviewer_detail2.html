@@ -1,5 +1,17 @@
-<article>
+<article> <!-- card.html -->
     <h4>{{ card.question }}</h4>
+    {% if not check_card %}
     <p>{{ card.answer }}</p>
     <hr>
+    {% else %}
+        <details>
+            <summary>Reveal Answer</summary>
+            <p>{{ card.answer }}</p>
+        </details>
+        <hr>
+        {% include "reviewer_check_form.html" with knowing_level=1 %}
+        {% include "reviewer_check_form.html" with knowing_level=2 %}
+        {% include "reviewer_check_form.html" with knowing_level=3 %}
+        {% include "reviewer_check_form.html" with knowing_level=4 %}
+    {% endif %}
  </article>

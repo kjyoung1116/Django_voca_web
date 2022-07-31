@@ -1,3 +1,4 @@
+from hashlib import new
 from django.db import models
 from platformdirs import user_cache_dir
 from django.contrib.auth.models import User as user_model
@@ -79,3 +80,14 @@ class Card(models.Model):
 
     def __str__(self):
         return self.question
+
+
+    def move(self, knowing_level):
+        new_box = int(self.box) + int(knowing_level)
+
+        if new_box in BOXES:
+            self.box = new_box
+            self.save()
+
+        return self
+        

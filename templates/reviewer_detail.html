@@ -4,6 +4,7 @@
 {% block content %}
     <h2>
         All Cards
+        {% include "reviewer_navigation.html" %}
     </h2>
     <a href="{% url 'reviewer:new_card' %}" role="button">
         ✨ Create New Card

@@ -21,3 +21,9 @@ class CreateReviewSettingsForm(forms.ModelForm):
             'purpose':'학습 목적'
         }
 
+
+
+class CardCheckForm(forms.Form):
+    card_id = forms.IntegerField(required=True)
+    knowing_level = forms.IntegerField(required=True)
+

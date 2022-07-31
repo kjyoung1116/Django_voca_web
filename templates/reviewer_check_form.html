@@ -1,0 +1,14 @@
+<form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="card_id" value="{{ card.id }}">
+    <input type="hidden" name="knowing_level" value="{{ knowing_level }}">
+    {% if knowing_level == 4 %}
+        <input type="submit" value="✅ I know exatly"/>
+    {% elif knowing_level == 3 %}
+        <input type="submit" value="✅ I know"/>
+    {% elif knowing_level == 2 %}
+        <input type="submit" value="✅ I harly know"/>
+    {% else %}
+        <input type="submit" value="❌ I don't know"/>
+    {% endif %}
+</form>
