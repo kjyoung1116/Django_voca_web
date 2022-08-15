@@ -37,8 +37,8 @@ vocas = [] # 단어 모음
 wb = openpyxl.load_workbook('voca.xlsx') 
 ws = wb['Sheet1']
 
-voca = ws['B'][6000:] # B열만 사용 # 단어 번호 +1
-mean = ws['c'][6000:]
+voca = ws['B'][7485:] # B열만 사용 # 단어 번호 +1
+mean = ws['c'][7485:]
 
 for cell,mean_cell in zip(voca,mean):
     if cell.value != None and cell.value.encode().isalpha() and mean_cell.value == None:
@@ -126,7 +126,7 @@ browser.quit()
 
 # 엑셀에 입력
 
-num=6000  # 상황에 맞게 바꾸기 (단어 번호 +1)
+num=7485  # 상황에 맞게 바꾸기 (단어 번호 +1)
 for i in meanings:
     ws.cell(row=num, column=3, value=i)
     num+=1

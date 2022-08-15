@@ -1,14 +1,9 @@
 {% extends 'base.html' %}
+
 {% load humanize %}
-{% load card_tags %}
 
 {% block content %}
 
-    <h2>
-        {{ review_settings.plan_name }}
-    </h2>
-    <br>
-    <!-- <h4>{% include "reviewer_navigation.html" %}</h4> -->
     <h4>
         <a href="{% url 'reviewer:box' box_num=1 %}">box 1</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         <a href="{% url 'reviewer:box' box_num=2 %}">box 2</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -16,16 +11,5 @@
         <a href="{% url 'reviewer:box' box_num=4 %}">box 4</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         <a href="{% url 'reviewer:box' box_num=5 %}">box 5</a>
     </h4>
-    <br><br>
-    <h2> {{ box_name }}  </h2>
-    <br>
-    <p><strong><u>{{ box_count }}</u></strong>&nbsp&nbspvocabulary left in this box.</p>
-    <br>
-    <hr>
-
-    {% for card in card_list %}
-    {% include "reviewer_plan_detail2.html" %}
-    {% endfor %}
-
 
 {% endblock content %}

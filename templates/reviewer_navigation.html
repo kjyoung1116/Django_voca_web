@@ -1,6 +1,7 @@
-{% load cards_tags %}
+{% load card_tags %}
 
 <nav>
-    <a href="{% url 'reviewer:reviewer_detail' %}">🗂 All Cards</a>
+    {{ plan_name}}
+    <a href="{% url 'reviewer:reviewer_detail' %}">🗂 전체 카드</a><br><br>
     {% boxes_as_links %}
 </nav>

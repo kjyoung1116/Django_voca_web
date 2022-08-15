@@ -1,7 +1,8 @@
 {% load humanize %}
+{% load card_tags %}
 
 {% for box in boxes %}
     <a href="{% url 'reviewer:box' box_num=box.number %}">
-        🗃 {{ box.number | ordinal }} Box <mark>{{ box.card_count }}</mark>
+         {{ box.box_name }} <mark>{{ box_count }}</mark>&nbsp&nbsp&nbsp&nbsp&nbsp
     </a>
 {% endfor %}
