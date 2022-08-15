@@ -97,8 +97,10 @@ class reviewer_plan_detail(ListView):
         user = self.request.user
         context = super(reviewer_plan_detail, self).get_context_data(**kwargs)
         context['card'] = Card.objects.filter(addition0 = user)
+        dates = set(Card.objects.filter(addition0 = user, addition9 = self.kwargs['plan_name']).values_list('review_date', flat=True))
+        context["review_date"] = sorted(dates)
         return context
-
+###### 플랜별/유저별로 구분하는 것 필요.
 class reviewer_detail(ListView):
     model = Card, review_settings
     queryset = Card.objects.all().order_by("box", "-date_created")[0:0]
