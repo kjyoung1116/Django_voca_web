@@ -3,13 +3,9 @@
 {% load humanize %}
 
 {% block content %}
-
-    <h4>
-        <a href="{% url 'reviewer:box' box_num=1 %}">box 1</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        <a href="{% url 'reviewer:box' box_num=2 %}">box 2</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        <a href="{% url 'reviewer:box' box_num=3 %}">box 3</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        <a href="{% url 'reviewer:box' box_num=4 %}">box 4</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        <a href="{% url 'reviewer:box' box_num=5 %}">box 5</a>
-    </h4>
-
+    <div style="width:가로; height:세로; overflow:hiddlen; white-space:nowrap;">
+    {% for i in review_date %}
+        <a href="{% url 'reviewer:box' review_date=i %}">{{i}}</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    {% endfor %}
+    </div>
 {% endblock content %}

@@ -128,51 +128,27 @@ class box_view(reviewer_detail):
     
     def get_queryset(self):
         user = self.request.user
-        first_date = review_settings.objects.get(user_id = user.id).create_at
-
-        if self.kwargs['box_num'] == 1:
-            return Card.objects.filter(review_date = first_date, addition0 = user)[0:1]
-
-        elif self.kwargs['box_num'] == 2:
-            return Card.objects.filter(review_date = first_date + timedelta(days=1), addition0 = user)
-
-        elif self.kwargs['box_num'] == 3:
-            return Card.objects.filter(review_date = first_date + timedelta(days=2), addition0 = user)
-
-        elif self.kwargs['box_num'] == 4:
-            return Card.objects.filter(review_date = first_date + timedelta(days=3), addition0 = user)
-
-        elif self.kwargs['box_num'] == 5:
-            return Card.objects.filter(review_date = first_date + timedelta(days=4), addition0 = user)
+        return Card.objects.filter(review_date = self.kwargs['review_date'], addition0 = user)[0:1]
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
 
-        if int(self.kwargs["box_num"]) == 1:
-            context["box_name"] = '오늘 학습할 단어'
-            context["box_count"] = len(Card.objects.filter(review_date = datetime.today(), addition0 = user))
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
 
-        elif int(self.kwargs["box_num"]) == 2:
-            context["box_name"] = '어제 단어 복습'
-            context["box_count"] = len(Card.objects.filter(review_date = datetime.today() + timedelta(days=1), addition0 = user))
+        for i in set(Card.objects.filter(addition0 = user).values_list('review_date', flat=True)):
+            context["box_count"] = len(Card.objects.filter(review_date = self.kwargs['review_date'], addition0 = user))
 
-        elif int(self.kwargs["box_num"]) == 3:
-            context["box_name"] = '2일 전 단어 복습'
-            context["box_count"] = len(Card.objects.filter(review_date = datetime.today() + timedelta(days=2), addition0 = user))
+        context["box_name"] = self.kwargs['review_date']+' 단어'
 
-        elif int(self.kwargs["box_num"]) == 4:
-            context["box_name"] = '3일 전 단어 복습'
-            context["box_count"] = len(Card.objects.filter(review_date = datetime.today() + timedelta(days=3), addition0 = user))
-
-        elif int(self.kwargs["box_num"]) == 5:
-            context["box_name"] = '7일 전 단어 복습'
-            context["box_count"] = len(Card.objects.filter(review_date = datetime.today() + timedelta(days=4), addition0 = user))
-        
         if self.object_list:
             context["check_card"] = self.object_list
-            
+
+        dates = set(Card.objects.filter(addition0 = user).values_list('review_date', flat=True))
+        context["review_date"] = sorted(dates)
         return context
+
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
