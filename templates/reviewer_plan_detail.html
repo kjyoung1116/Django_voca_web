@@ -3,10 +3,12 @@
 {% load humanize %}
 
 {% block content %}
+    <h1>{{user}}의 플랜 {{plan_name}}</h1>
+    <br><br><br>
     <div style="width:가로; height:세로; overflow:hiddlen; white-space:nowrap;">
-    {% for i in review_date %}
-        <a href="{% url 'reviewer:box' review_date=i %}">{{i}}</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    {% endfor %}
+        {% for i in review_date %}
+            <a href="{% url 'reviewer:box' user=user plan_name=plan_name review_date=i %}">{{i}}</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        {% endfor %}
     </div>
     
 {% endblock content %}

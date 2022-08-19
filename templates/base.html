@@ -47,11 +47,12 @@
     a.waves-effect, a.waves-light {
       display: block;
     }
+
   </style>
     
     
 </head>
-<body style="background-color: #E3E4E7; padding-left: 10vw; padding-right: 10vw; padding-top: 5vw; padding-bottom: 5vw; margin-left: 5vw; margin-right: 5vw;">
+<body style="background-color: #D8D8D8; padding-left: 10vw; padding-right: 10vw; padding-top: 5vw; padding-bottom: 5vw; margin-left: 5vw; margin-right: 5vw; height:100%; background-attachment: fixed;">
 
     <header>
         <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
@@ -62,7 +63,7 @@
           
           <div class="collapse navbar-collapse justify-content-center" id="navbarsExample03">
             <ul class="navbar-nav">
-              <a class="nav-link active ml-2 mr-2" class="btn" style="font-size:1.1vw; font-weight:bold" href="http://127.0.0.1:8000/board/"><img style="height:1.7vw;"alt="Brand" src="{% static 'images/006.jpg' %}">KJY Voca</a>
+              <a class="nav-link active ml-2 mr-2" class="btn" style="font-size:1.1vw; font-weight:bold" href="http://127.0.0.1:8000/board/"><img style="height:1.7vw;"alt="Brand" src="{% static 'images/Logo.jpg' %}"> VOCABISM</a>
               <a class="nav-link active ml-2 mr-2" class="btn" style="font-size:1.1vw;" href="http://127.0.0.1:8000/board/">Home</a>
               <a class="nav-link active ml-2 mr-2" class="btn" style="font-size:1.1vw;" href="http://127.0.0.1:8000/board/">Today</a>
            
@@ -101,7 +102,7 @@
         {% endblock %}
 
         <!-- 부트스트랩 로그아웃 모달 -->
-        <div class="modal fade" id="logout_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade"  id="logout_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
                   <div class="modal-header">
@@ -110,6 +111,7 @@
                           <span aria-hidden="true">X</span>
                       </button>
                   </div>
+                  <img src="{% static 'images/Logo_with_Text.jpg' %}">
                   <div class="modal-body">로그아웃 하시겠습니까?</div>
                   <div class="modal-footer">
                       <a class="btn" id="modalY" href="http://127.0.0.1:8000/accounts/logout">예</a>

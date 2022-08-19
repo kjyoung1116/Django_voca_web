@@ -1,5 +1,20 @@
 {% for i in my_reviewers%}
     <div style="border: 1px; float: left; width: 33%; margin:3%; padding: 2%; font-size: 1.5rem; background-color:white; border-radius:10px;">
-        <a href = "http://127.0.0.1:8000/reviewer/plan_detail/{{ i.plan_name }}"> 플랜명 : {{ i.plan_name }} <br> 선택한 단어 : {{ i.selected_voca }} <br> 하루 학습량 : {{ i.voca_per_day }} <br> 복습 강도 : {{ i.reviewing_intensity }} <br> 학습 목적 : {{ i.purpose }}</a>
+        <a href = "{% url 'reviewer:box' user=user plan_name=i.plan_name review_date=today %}"> 플랜명 : {{ i.plan_name }} <br> 선택한 단어 : {{ i.selected_voca }} <br> 하루 학습량 : {{ i.voca_per_day }} <br> 복습 강도 : {{ i.reviewing_intensity }} <br> 학습 목적 : {{ i.purpose }}</a>
+        <a href="#" class="delete btn btn-sm btn-outline-danger" style="font-size: 1rem; color:red;"
+        data-uri="{% url 'reviewer:plan_delete' plan_name=i.plan_name  %}">삭제</a>
     </div>
-{% endfor %}</P>
+{% endfor %}
+
+
+{% block script %}
+<script type='text/javascript'>
+$(document).ready(function(){
+    $(".delete").on('click', function() {
+        if(confirm("해당 플랜을 삭제하시겠습니까?")) {
+            location.href = $(this).data('uri');
+        }
+    });
+});
+</script>
+{% endblock %}

@@ -1,7 +1,12 @@
-{% load card_tags %}
+<div style="width:가로; height:세로; overflow:hiddlen; white-space:nowrap;">
+    {% for i in review_date %}
+        <a href="{% url 'reviewer:box' user=user plan_name=plan_name review_date=i %}">{{i}}</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    {% endfor %}
+</div>
+<hr>
+<p style="font-size:3.815rem;"> {{ box_name }} 단어장  </p>
+<br>
+<p style="font-size:1.25rem;">단어장에 남은 단어 : <strong><u>{{ box_count }}</u></strong></p>
+<p style="font-size:1.25rem;">하루 학습 목표 : {{voca_per_day}}<br>오늘 학습량 : {{daily_review_num}}</p>
+<hr>
 
-<nav>
-    {{ plan_name}}
-    <a href="{% url 'reviewer:reviewer_detail' %}">🗂 전체 카드</a><br><br>
-    {% boxes_as_links %}
-</nav>

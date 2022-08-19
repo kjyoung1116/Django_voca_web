@@ -38,11 +38,11 @@
           </div>
 
           <div class='col-md-3' style=" background-color:white; margin-left:4%; margin-right:4%; border-radius:10px;">             
-            <a href="http://127.0.0.1:8000/board/GRE/page{{list_page}}/">{{list_page_ment}}</a>
+            <a href="{% url 'board:alphabet' param=list_page %}">{{list_page_ment}}</a>
           </div>
 
           <div class='col-md-3' style=" background-color:white; margin-left:4%; margin-right:4%; border-radius:10px;">             
-              <a href="http://127.0.0.1:8000/board/GRE/{{next_page}}/">{{next_page_ment}}</a>
+              <a href="{% url 'board:alphabet_detail' param=next_page %}">{{next_page_ment}}</a>
           </div>
         </div>
 
@@ -50,11 +50,11 @@
 
         <div class='row'  style="text-align: center; margin:5% 15% 5% 16%;">
           <div class='col-md-3' style=" background-color:white; margin-left:4%; margin-right:4%; border-radius:10px;">             
-              <a href="http://127.0.0.1:8000/board/alphabet/{{prev_page}}/">{{prev_page_ment}}</a>
+              <a href="{% url 'board:alphabet_detail' param=prev_page %}">{{prev_page_ment}}</a>
           </div>
 
           <div class='col-md-3' style=" background-color:white; margin-left:4%; margin-right:4%; border-radius:10px;">             
-            <a href="http://127.0.0.1:8000/board/alphabet/page{{list_page}}/">{{list_page_ment}}</a>
+            <a href="{% url 'board:alphabet' param=list_page %}">{{list_page_ment}}</a>
           </div>
 
           <div class='col-md-3' style=" background-color:white; margin-left:4%; margin-right:4%; border-radius:10px;">             
@@ -66,15 +66,15 @@
 
         <div class='row'  style="text-align: center; margin:5% 15% 5% 16%;">
           <div class='col-md-3' style=" background-color:white; margin-left:4%; margin-right:4%; border-radius:10px;">             
-              <a href="http://127.0.0.1:8000/board/alphabet/{{prev_page}}/">{{prev_page_ment}}</a>
+              <a href="{% url 'board:alphabet_detail' param=prev_page %}">{{prev_page_ment}}</a>
           </div>
 
           <div class='col-md-3' style=" background-color:white; margin-left:4%; margin-right:4%; border-radius:10px;">             
-            <a href="http://127.0.0.1:8000/board/alphabet/page{{list_page}}/">{{list_page_ment}}</a>
+            <a href="{% url 'board:alphabet' param=list_page %}">{{list_page_ment}}</a>
           </div>
 
           <div class='col-md-3' style=" background-color:white; margin-left:4%; margin-right:4%; border-radius:10px;">             
-              <a href="http://127.0.0.1:8000/board/alphabet/{{next_page}}/">{{next_page_ment}}</a>
+              <a href="{% url 'board:alphabet_detail' param=next_page %}">{{next_page_ment}}</a>
           </div>
         </div>
 

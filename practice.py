@@ -1,5 +1,2 @@
-num = 0
-for i in range(8000):
-    num += i
-
-print(num)
+a = 1.9
+print(int(a))

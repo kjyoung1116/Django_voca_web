@@ -2,13 +2,13 @@
     {% csrf_token %}
     <input type="hidden" name="card_id" value="{{ card.id }}">
     <input type="hidden" name="knowing_level" value="{{ knowing_level }}">
-    {% if knowing_level == 4 %}
-        <input type="submit" style="float:left; width: 20%; height:50px; margin:2%;" value="✅ I know exatly"/>
-    {% elif knowing_level == 3 %}
-        <input type="submit" style="float:left; width: 20%; height:50px; margin:2%;" value="✅ I know"/>
+    {% if knowing_level == 3 %}
+        <input type="submit" style="float:left; width: 28%; height:50px; margin:2%;" value="✔️"/>
     {% elif knowing_level == 2 %}
-        <input type="submit" style="float:left; width: 20%; height:50px; margin:2%;" value="✅ I harly know"/>
+        <input type="submit" style="float:left; width: 28%; height:50px; margin:2%;" value="⬜"/>
     {% else %}
-        <input type="submit" style="float:left; width: 20%; height:50px; margin:2%; margin-left:4%;" value="❌ I don't know"/>
+        <input type="submit" style="float:left; width: 28%; height:50px; margin:2%; margin-left:4%;" value="❌"/>
     {% endif %}
 </form>
+
+

@@ -7,6 +7,7 @@ from django.db import models
     def __str__(self):
         return self.genre'''
 
+
 class Voca(models.Model):
     voca = models.CharField(max_length=100)
     meaning = models.CharField(max_length=100)
@@ -14,6 +15,7 @@ class Voca(models.Model):
     significance = models.CharField(max_length=50)
     difficulty = models.CharField(max_length=50)
     genre = models.CharField(max_length=10, default='GRE')
+
     def __str__(self):
         return self.voca
 
@@ -35,7 +37,7 @@ class learn_review_custom(models.Model):
         (300, 300),
     ]
 
-    review_day_choices =[
+    review_day_choices = [
         (1, 1),
         (2, 2),
         (3, 3),
@@ -52,7 +54,7 @@ class learn_review_custom(models.Model):
         (14, 14),
     ]
 
-    genre_choices = review_day_choices =[
+    genre_choices = review_day_choices = [
         ('elementary', '기초 영단어'),
         ('K_SAT', '수능 영단어'),
         ('GRE', '편입, 토플, GRE 영단어'),
@@ -62,14 +64,14 @@ class learn_review_custom(models.Model):
         ('all', '모든 영단어'),
     ]
 
-    name=models.CharField(max_length=10, help_text='커스텀 플랜의 이름을 입력하세요.')
-    voca_per_day = models.CharField(max_length=10, choices= voca_per_day_choices, help_text='하루 동안 외울 단어의 수를 입력하세요.')
-    review_day = models.CharField(max_length=10,  choices= review_day_choices, help_text='외운 단어의 복습이 시작될 주기를 입력하세요. ex) 1,3,7 등')
-    select_genre = models.CharField(max_length=10, choices= genre_choices, help_text='외울 단어의 카테고리를 설정하세요. ex) 모든 단어, 수능 단어, 고급 단어, 기초 단어 등')
+    name = models.CharField(max_length=10, help_text='커스텀 플랜의 이름을 입력하세요.')
+    voca_per_day = models.CharField(
+        max_length=10, choices=voca_per_day_choices, help_text='하루 동안 외울 단어의 수를 입력하세요.')
+    review_day = models.CharField(
+        max_length=10,  choices=review_day_choices, help_text='외운 단어의 복습이 시작될 주기를 입력하세요. ex) 1,3,7 등')
+    select_genre = models.CharField(max_length=10, choices=genre_choices,
+                                    help_text='외울 단어의 카테고리를 설정하세요. ex) 모든 단어, 수능 단어, 고급 단어, 기초 단어 등')
     started_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
-                                
-                                                      
-                                

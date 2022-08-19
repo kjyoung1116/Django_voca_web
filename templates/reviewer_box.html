@@ -9,21 +9,31 @@
     </h2>
     <br>
     <!-- <h4>{% include "reviewer_navigation.html" %}</h4> -->
-    <div style="width:가로; height:세로; overflow:hiddlen; white-space:nowrap;">
-        {% for i in review_date %}
-            <a href="{% url 'reviewer:box' review_date=i %}">{{i}}</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        {% endfor %}
-        </div>
-    <br><br>
-    <h2> {{ box_name }}  </h2>
-    <br>
-    <p><strong><u>{{ box_count }}</u></strong>&nbsp&nbspvocabulary left in this box.</p>
-    <br>
-    <hr>
+    {% include 'reviewer_navigation.html' %}
 
-    {% for card in card_list %}
-    {% include "reviewer_plan_detail2.html" %}
-    {% endfor %}
+    {% if card_list %}
+        {% for card in card_list %}
+        {% include "reviewer_check_form.html" with knowing_level=1 %}
+        {% include "reviewer_check_form.html" with knowing_level=2 %}
+        {% include "reviewer_check_form.html" with knowing_level=3 %}
+        <br>
+        <article>
+            <details>
+                <summary style="color:black;font-size:2.441rem;">{{card.question}}<div style="font-size:1rem;">{{card.addition4}}</div></summary>
+                <br>
+                <div style="font-size: 1.563rem; color : blue; font-weight:bold;">{{card.answer|linebreaks }}</div>
+                <div style="font-size: 1.25rem; color : black;">유의어 : <strong>{{card.addition3}}</strong></div>
+                <br>
+                <a href="https://en.dict.naver.com/#/search?range=all&query={{card.question}}" target='_blank'>네이버 영어사전에서 보기</a>
+            </details>
+        </article>
+        {% endfor %}
+
+    {% else %}
+        <h4> {{date}}의 모든 단어를 학습했습니다. 다른 날의 단어장으로 이동하세요!</h4>
+
+    {% endif %}
+    <hr>
 
 
 {% endblock content %}
