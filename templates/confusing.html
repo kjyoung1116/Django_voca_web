@@ -4,21 +4,64 @@
 
      {% csrf_token %}
 
-        {% for i in confusing_len %}
+     {% for i in confusing_len %}
 
-          <div class="list-group">
-            <a href="http://127.0.0.1:8000/board/confusing/{{i}}/" class="list-group-item list-group-item-action" aria-current="true">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">{{i}}</h5>
-              </div>
-              <p class="mb-2 text-center" style="font-size: 1.5rem;">혼동하기 쉬운 영단어 {{i}}</p>
-              <p class="text-center" style="font-size: 1.0rem;">(10단어)</p>
-            </a>
-          </div>
+     <div class="list-group">
+       <a href="{% url 'board:confusing_detail' param=i %}" class="list-group-item list-group-item-action" aria-current="true">
+         <div class="d-flex w-100 justify-content-between">
+           <h5 class="mb-1">{{i}}</h5>
+         </div>
+         <p class="mb-2 text-center" style="font-size: 1.5rem;">confusing {{i}}</p>
+         <p class="text-center" style="font-size: 1.0rem;">(10단어)</p>
+       </a>
+     </div>
+         {% endfor %}
+    
+        <br><br>
+        <!-- 페이징처리 시작 -->
+    <ul class="pagination justify-content-center"style="background-color: white;">
+        <!-- 첫 페이지 -->
+        <li class="page-item">
+          <a class="page-link" href="{% url 'board:confusing' param=1 %}">1 페이지</a>
+        </li>
+        <!-- 이전페이지 -->
+        {% if previous_page > 0 %}
+        <li class="page-item">
+            <a class="page-link" href="{% url 'board:confusing' param=previous_page %}"><</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#"><</a>
+        </li>
+        {% endif %}
+        <!-- 페이지리스트 -->
+        {% for page_number in range_len_page %}
+        {% if page_number >= page|add:-5 and page_number <= page|add:5 %}
+        {% if page_number == page %}
+        <li class="page-item active" aria-current="page">
+            <a class="page-link" href="{% url 'board:confusing' param=page_number %}">{{ page_number }}</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+            <a class="page-link" href="{% url 'board:confusing' param=page_number %}">{{ page_number }}</a>
+        </li>
+        {% endif %}
+        {% endif %}
         {% endfor %}
-
-          <div class="wrapper" style="text-align: center; background-color:white; margin:5% 35% 5% 35%; border-radius:10px;">             
-            <a href="http://127.0.0.1:8000/board/confusing/{{next_page}}/">다음 10 단어</a>
-        </div>
-
+        <!-- 다음페이지 -->
+        {% if next_page <= len_page%}
+        <li class="page-item">
+            <a class="page-link" href="{% url 'board:confusing' param=next_page %}">></a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">></a>
+        </li>
+        {% endif %}
+        <!-- 마지막 페이지 -->
+        <li class="page-item">
+          <a class="page-link" href={% url 'board:confusing' param=len_page %}">{{len_page}} 페이지</a>
+        </li>
+    </ul>
+    <!-- 페이징처리 끝 -->
 {% endblock %}

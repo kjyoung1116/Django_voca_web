@@ -1,7 +1,6 @@
 from django.shortcuts import render
 
 import pandas as pd
-from .models import learn_review_custom
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -179,46 +178,59 @@ def confusing_detail(request, param):
 
 
 # ----------------------------------------------------------------------------------------------------------------------
-def elementary(request):
+def elementary(request, param):
     elementary_len = []
-    data = pd.read_excel('voca.xlsx')
-    data_filtered = data.loc[data['장르'] == 'elementary']
-    len_voca = len(data_filtered)
+    data = pd.read_excel('voca.xlsx', sheet_name='elementary')
+    len_voca = len(data)
 
     if len_voca % 10 > 0:
         len_voca = len_voca // 10 + 1
     else:
         len_voca = len_voca // 10
 
-    for i in range(1, len_voca+1):
-        elementary_len.append(str(i))
-    return render(request, "../templates/elementary.html", {'elementary_len': elementary_len})
+    for i in range((int(param)-1)*10+1, int(param)*10+1):
+        if i <= len_voca:
+            elementary_len.append(str(i))
+
+    page = int(param)
+    previous_page = int(param)-1
+    next_page = int(param)+1
+    len_page = len_voca // 10 + 1
+    range_len_page = range(1, len_page+1)
+    return render(request, "../templates/elementary.html", {'elementary_len': elementary_len, 'page': page, 'previous_page': previous_page, 'next_page': next_page, 'len_page': len_page, 'range_len_page': range_len_page})
 
 
 def elementary_detail(request, param):
-    data = pd.read_excel('voca.xlsx')
-    data_filtered = data.loc[data['장르'] ==
-                             'elementary'][(int(param)-1)*10:int(param)*10]
-    voca = data_filtered['단어']
-    meaning = data_filtered['의미']
-    sentence = data_filtered['예문']
-    significance = data_filtered['중요도']
-    difficulty = data_filtered['난이도']
+    data = pd.read_excel('voca.xlsx', sheet_name='elementary')[
+        (int(param)-1)*10:int(param)*10]
+    voca = data['단어']
+    meaning = data['의미']
+    sentence = data['예문']
+    significance = data['중요도']
+    difficulty = data['난이도']
     number = range((int(param)-1)*10+1, int(param)*10+10)
-    synonym = data_filtered['유의어']
+    synonym = data['유의어']
 
     voca_data = []
+
     for i in zip(voca, meaning, sentence, significance, difficulty, number, synonym):
         voca_data.append(i)
 
-    if len(data) - (10*(int(param)+1)) > -10:  # ex) 총 단어 1001개, param 101까지
-        next_page = int(param)+1
-        page_ment = '다음 10단어 (%d ~ %d)' % (int(param)*10+1, (int(param)+1)*10)
-    else:
-        next_page = 'list'
-        page_ment = '단어목록으로 가기'
+    len_page = len(data)//10 + 1
+    param = int(param)
 
-    return render(request, "../templates/alphabet_detail.html", {'voca_data': voca_data, 'next_page': next_page, 'page_ment': page_ment})
+    next_page = int(param)+1
+    prev_page = int(param)-1
+    next_page_ment = '다음 10단어 (%d~%d)' % (int(param)*10+1, (int(param)+1)*10)
+    prev_page_ment = '이전 10단어 (%d~%d)' % (
+        (int(param)-2)*10+1, (int(param)-1)*10)
+    list_page_ment = '단어목록으로 가기'
+    if int(param) % 10 > 0:
+        list_page = int((int(param) - int(param) % 10)/10 + 1)
+    else:
+        list_page = int(int(param) / 10)
+
+    return render(request, "../templates/elementary_detail.html", {'list_page_ment': list_page_ment, 'list_page': list_page, 'len_page': len_page, 'param': param, 'voca_data': voca_data, 'next_page': next_page, 'next_page_ment': next_page_ment, 'prev_page': prev_page, 'prev_page_ment': prev_page_ment})
 # ----------------------------------------------------------------------------------------------------------------------
 
 
@@ -324,9 +336,59 @@ def GRE_detail(request, param):
 # ----------------------------------------------------------------------------------------------------------------------
 
 
-# ----------------------------------------------------------------------------------------------------------------------
+def compound(request, param):
+    compound_len = []
+    data = pd.read_excel('voca.xlsx', sheet_name='복합어')
+    len_voca = len(data)
+
+    if len_voca % 10 > 0:
+        len_voca = len_voca // 10 + 1
+    else:
+        len_voca = len_voca // 10
+
+    for i in range((int(param)-1)*10+1, int(param)*10+1):
+        if i <= len_voca:
+            compound_len.append(str(i))
+
+    page = int(param)
+    previous_page = int(param)-1
+    next_page = int(param)+1
+    len_page = len_voca // 10 + 1
+    range_len_page = range(1, len_page+1)
+    return render(request, "../templates/compound.html", {'compound_len': compound_len, 'page': page, 'previous_page': previous_page, 'next_page': next_page, 'len_page': len_page, 'range_len_page': range_len_page})
 
 
+def compound_detail(request, param):
+    data = pd.read_excel('voca.xlsx', sheet_name='복합어')[
+        (int(param)-1)*10:int(param)*10]
+    voca = data['단어']
+    meaning = data['의미']
+    sentence = data['예문']
+    significance = data['중요도']
+    difficulty = data['난이도']
+    number = range((int(param)-1)*10+1, int(param)*10+10)
+    synonym = data['유의어']
+
+    voca_data = []
+
+    for i in zip(voca, meaning, sentence, significance, difficulty, number, synonym):
+        voca_data.append(i)
+
+    len_page = len(data)//10 + 1
+    param = int(param)
+
+    next_page = int(param)+1
+    prev_page = int(param)-1
+    next_page_ment = '다음 10단어 (%d~%d)' % (int(param)*10+1, (int(param)+1)*10)
+    prev_page_ment = '이전 10단어 (%d~%d)' % (
+        (int(param)-2)*10+1, (int(param)-1)*10)
+    list_page_ment = '단어목록으로 가기'
+    if int(param) % 10 > 0:
+        list_page = int((int(param) - int(param) % 10)/10 + 1)
+    else:
+        list_page = int(int(param) / 10)
+
+    return render(request, "../templates/compound_detail.html", {'list_page_ment': list_page_ment, 'list_page': list_page, 'len_page': len_page, 'param': param, 'voca_data': voca_data, 'next_page': next_page, 'next_page_ment': next_page_ment, 'prev_page': prev_page, 'prev_page_ment': prev_page_ment})
 # ----------------------------------------------------------------------------------------------------------------------
 
 

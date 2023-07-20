@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.models import User as user_model
 from soupsieve import select
 from reviewer.forms import CreateReviewSettingsForm
-from .models import review_settings, Card
+from .models import review_settings, Card, completed_dates
 import pandas as pd
 from django.views.generic import (ListView, CreateView, UpdateView, DetailView)
 from django.urls import reverse_lazy
@@ -239,5 +239,22 @@ class box_view(reviewer_plan_detail):
                     card.review_date = date.today() + timedelta(days=7)
                     daily_review_num += 1
             card.save()
+
+            if daily_review_num == int(review_settings.objects.get(user_id=user.id, plan_name=self.kwargs['plan_name']).voca_per_day):
+                db = completed_dates()
+                db.user = get_object_or_404(
+                    user_model, pk=request.user.id)
+                db.completed_date = date.today()
+                db.goal_quantity = review_settings.objects.get(
+                    user_id=user.id, plan_name=self.kwargs['plan_name']).voca_per_day
+                db.today_quantity = daily_review_num
+                db.plan_name = self.kwargs['plan_name']
+                db.save()
+
+            elif daily_review_num >= int(review_settings.objects.get(user_id=user.id, plan_name=self.kwargs['plan_name']).voca_per_day):
+                db = completed_dates.objects.get(
+                    user_id=user.id, plan_name=self.kwargs['plan_name'], completed_date=date.today())
+                db.today_quantity = daily_review_num
+                db.save()
 
         return redirect(request.META.get("HTTP_REFERER"))

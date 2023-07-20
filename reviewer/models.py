@@ -93,3 +93,21 @@ class Card(models.Model):
 
     def __str__(self):
         return self.question
+
+
+class completed_dates(TimeStampedModel):
+    user = models.ForeignKey(
+        user_model,
+        null=True,
+        on_delete=models.CASCADE,
+        related_name='user')
+
+    completed_date = models.DateField(auto_now_add=True)
+
+    plan_name = models.CharField(max_length=1000, blank=True, default='')
+
+    completed_or_not = models.CharField(max_length=10, blank=True, default='n')
+
+    today_quantity = models.CharField(max_length=1000, blank=True, default='')
+
+    goal_quantity = models.CharField(max_length=1000, blank=True, default='')

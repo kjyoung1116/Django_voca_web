@@ -9,7 +9,12 @@
         <div class="col">
           <div class="alert alert-light" role="alert">
             <p style="font-size:1.7vw; color:black; font-weight:bold;">반갑습니다, {{user}}님</p>
-            <p style="font-size:1.0vw; color:black;">현재까지 외운 영단어 1422개입니다. (전체 순위 %위 [21 ^])</p> <!-- 왼쪽에 그래프 추가, 숫자 자동 계산 -->
+            <p style="font-size:1.0vw; color:black;">나중에 요약 기능 추가</p> <!--왼쪽에 그래프 추가, 숫자 자동 계산 -->
+          </div>
+          <div class="alert alert-light" role="alert">
+            <a href=""><img src="{% static 'images/idiom.jpg' %}" class="card-img-top"/></a>
+            <p style="font-size:1vw; color:black;">1000+ 숙어 완전 정복!</p>
+            <a href="" class="btn" style="font-size: 1.3vw; font-weight:bold;">Go!</a>
           </div>
         </div>
         <div class="col">
@@ -25,15 +30,20 @@
       <div class="row">
         <div class="col">
           <div class="alert alert-light" role="alert">
-            <p style="font-size:1.5vw; color:black; font-weight:bold;">단어 암기, KJY Voca와 함께.</p>
+            <p style="font-size:1.5vw; color:black; font-weight:bold;">Hello!</p>
             <a href="http://127.0.0.1:8000/accounts/login" style="font-size:1vw; color:black;">로그인하여 진행 정보, 전체 순위 등을 확인할 수 있습니다.</a>
+          </div>
+          <div class="alert alert-light" role="alert">
+            <a href=""><img src="{% static 'images/idiom.jpg' %}" class="card-img-top"/></a>
+            <p style="font-size:1vw; color:black;">1000+ 숙어 완전 정복!</p>
+            <a href="" class="btn" style="font-size: 1.3vw; font-weight:bold;">Go!</a>
           </div>
         </div>
         <div class="col">
           <div class="alert alert-light" role="alert">
-            <a href="http://127.0.0.1:8000/accounts/login"><img src="{% static 'images/lr3.jpg' %}" class="card-img-top"/></a>
-            <p style="font-size:1.5vw; color:black; font-weight:bold;">Learn And Review! 단어 암기 플랜</p><br>
-            <a href="http://127.0.0.1:8000/accounts/login" style="font-size:1vw; color:black;">로그인하여 여러 가지 단어 암기 서비스를 살펴보세요.</a>
+            <a href="http://127.0.0.1:8000/accounts/login"><img src="{% static 'images/reviewer2.jpg' %}" class="card-img-top"/></a>
+            <p style="font-size:1.5vw; color:black; font-weight:bold;">Learn And Review! 단어 암기 플랜</p>
+            <a href="http://127.0.0.1:8000/accounts/login" class="btn" style="font-size:1vw; color:black;">로그인하여 암기 플랜 사용하기</a>
           </div>
         </div>
       </div>
@@ -46,7 +56,7 @@
           <div class="card h-100">
             <div class="card-body">
               <a href="http://127.0.0.1:8000/board/alphabet/page1"><img src="{% static 'images/alphabet.jpg' %}" class="card-img-top"/></a>
-              <h7 class="card-subtitle mb-2 text-muted" style="font-size: 1.0vw; color:black;">KJY Voca의 모든 영단어를<br> 알파벳순으로 학습하세요.</h7>
+              <h7 class="card-subtitle mb-2 text-muted" style="font-size: 1.0vw; color:black;">VOCABISM의 8000 + 영단어를<br> 알파벳순으로 학습하세요.</h7>
               <a href="http://127.0.0.1:8000/board/alphabet/page1" class="btn" style="font-size: 1.3vw; font-weight:bold;">Go!</a>
             </div>
           </div>
@@ -55,9 +65,9 @@
         <div class="col">
           <div class="card h-100">
             <div class="card-body">
-              <a href="http://127.0.0.1:8000/board/elementary"><img src="{%static 'images/elementary.jpg' %}" class="card-img-top"></a>
+              <a href="http://127.0.0.1:8000/board/elementary/page1"><img src="{%static 'images/elementary.jpg' %}" class="card-img-top"></a>
               <h7 class="card-subtitle mb-2 text-muted" style="font-size: 1.0vw; color:black;">기초가 가장 중요한 법! <br>필수 기초 영단어를 학습하세요.</h7>
-              <a href="http://127.0.0.1:8000/board/elementary" class="btn" style="font-size: 1.3vw; font-weight:bold;">Go!</a>
+              <a href="http://127.0.0.1:8000/board/elementary/page1" class="btn" style="font-size: 1.3vw; font-weight:bold;">Go!</a>
             </div>
           </div>
         </div>
@@ -65,9 +75,9 @@
         <div class="col">
           <div class="card h-100">
             <div class="card-body">
-              <a href="http://127.0.0.1:8000/board/confusing_voca"><img src="{%static 'images/confusin.JPG' %}" class="card-img-top"></a>
+              <a href="http://127.0.0.1:8000/board/confusing_voca/page1"><img src="{%static 'images/confusin.JPG' %}" class="card-img-top"></a>
               <h7 class="card-subtitle mb-2 text-muted" style="font-size: 1.0vw; color:black;">혼동하기 쉬운 어휘 <br> 총정리!</h7>
-              <a href="http://127.0.0.1:8000/board/confusing_voca" class="btn" style="font-size: 1.3vw; font-weight:bold;">Go!</a>
+              <a href="http://127.0.0.1:8000/board/confusing_voca/page1" class="btn" style="font-size: 1.3vw; font-weight:bold;">Go!</a>
             </div>
           </div>
         </div>
@@ -86,7 +96,7 @@
           <div class="card h-100">
             <div class="card-body">
               <a href="http://127.0.0.1:8000/board/GRE/page1"><img src="{%static 'images/GRE.JPG' %}" class="card-img-top"></a>
-                <h7 class="card-subtitle mb-2 text-muted" style="font-size: 1.0vw; color:black;">편입, GRE, TOFEL 등<br> 난이도가 높은 영단어를 학습하세요.</h7>
+                <h7 class="card-subtitle mb-2 text-muted" style="font-size: 1.0vw; color:black;">GRE, 편입, TOFEL 등<br> 난이도가 높은 영단어를 학습하세요.</h7>
               <a href="http://127.0.0.1:8000/board/GRE/page1" class="btn" style="font-size: 1.3vw; font-weight:bold;">Go!</a>
             </div>
           </div>
@@ -95,9 +105,9 @@
         <div class="col">
           <div class="card h-100">
             <div class="card-body">
-              <a href="http://127.0.0.1:8000/board/significance"><img src="{%static 'images/3star.JPG' %}" class="card-img-top"></a>
-              <h7 class="card-subtitle mb-2 text-muted" style="font-size: 1.0vw; color:black;">고수들을 위한 영단어 모음<br>최고급 영단어에 도전하세요!</h7>
-              <a href="http://127.0.0.1:8000/board/significance" class="btn" style="font-size: 1.3vw; font-weight:bold;">Go!</a>
+              <a href="{% url 'board:compound' param=1 %}"><img src="{%static 'images/compound.JPG' %}" class="card-img-top"></a>
+              <h7 class="card-subtitle mb-2 text-muted" style="font-size: 1.0vw; color:black;">알아두면 도움 되는!<br>합성어 모음</h7>
+              <a href="{% url 'board:compound' param=1 %}" class="btn" style="font-size: 1.3vw; font-weight:bold;">Go!</a>
             </div>
           </div>
         </div>

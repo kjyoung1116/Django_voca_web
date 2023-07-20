@@ -7,7 +7,7 @@
      {% for i in alphabet_len %}
 
      <div class="list-group">
-       <a href="http://127.0.0.1:8000/board/alphabet/{{i}}/" class="list-group-item list-group-item-action" aria-current="true">
+       <a href="{% url 'board:alphabet_detail' param=i %}" class="list-group-item list-group-item-action" aria-current="true">
          <div class="d-flex w-100 justify-content-between">
            <h5 class="mb-1">{{i}}</h5>
          </div>
@@ -22,12 +22,12 @@
     <ul class="pagination justify-content-center"style="background-color: white;">
         <!-- 첫 페이지 -->
         <li class="page-item">
-          <a class="page-link" href="http://127.0.0.1:8000/board/alphabet/page1/">1 페이지</a>
+          <a class="page-link" href="{% url 'board:alphabet' param=1 %}">1 페이지</a>
         </li>
         <!-- 이전페이지 -->
         {% if previous_page > 0 %}
         <li class="page-item">
-            <a class="page-link" href="http://127.0.0.1:8000/board/alphabet/page{{previous_page}}/"><</a>
+            <a class="page-link" href="{% url 'board:alphabet' param=previous_page %}"><</a>
         </li>
         {% else %}
         <li class="page-item disabled">
@@ -39,11 +39,11 @@
         {% if page_number >= page|add:-5 and page_number <= page|add:5 %}
         {% if page_number == page %}
         <li class="page-item active" aria-current="page">
-            <a class="page-link" href="http://127.0.0.1:8000/board/alphabet/page{{ page_number }}">{{ page_number }}</a>
+            <a class="page-link" href="{% url 'board:alphabet' param=page_number %}">{{ page_number }}</a>
         </li>
         {% else %}
         <li class="page-item">
-            <a class="page-link" href="http://127.0.0.1:8000/board/alphabet/page{{ page_number }}">{{ page_number }}</a>
+            <a class="page-link" href="{% url 'board:alphabet' param=page_number %}">{{ page_number }}</a>
         </li>
         {% endif %}
         {% endif %}
@@ -51,7 +51,7 @@
         <!-- 다음페이지 -->
         {% if next_page <= len_page%}
         <li class="page-item">
-            <a class="page-link" href="http://127.0.0.1:8000/board/alphabet/page{{next_page}}">></a>
+            <a class="page-link" href="{% url 'board:alphabet' param=next_page %}">></a>
         </li>
         {% else %}
         <li class="page-item disabled">
@@ -60,7 +60,7 @@
         {% endif %}
         <!-- 마지막 페이지 -->
         <li class="page-item">
-          <a class="page-link" href="http://127.0.0.1:8000/board/alphabet/page{{len_page}}/">{{len_page}} 페이지</a>
+          <a class="page-link" href={% url 'board:alphabet' param=len_page %}">{{len_page}} 페이지</a>
         </li>
     </ul>
     <!-- 페이징처리 끝 -->

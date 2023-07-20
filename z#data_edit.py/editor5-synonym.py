@@ -34,9 +34,9 @@ browser.implicitly_wait(10)
 vocas = [] # 단어 모음
 
 wb = openpyxl.load_workbook('voca.xlsx') 
-ws = wb['Sheet1']
+ws = wb['추가 어휘']
 
-voca = ws['B'][5000:] # B열만 사용 # 단어 번호 +1
+voca = ws['B'][1:]  # B열만 사용 # 단어 번호 +1
 
 for cell in voca:
     vocas.append(cell.value)
@@ -46,38 +46,34 @@ for cell in voca:
 for i in vocas:
     try:
         # 검색창 클릭
-        browser.implicitly_wait(1)
-        sleep(0.1)
+        browser.implicitly_wait(2)
+        sleep(0.4)
         meaning_search = browser.find_element(By.CSS_SELECTOR, '#thesinput')
         browser.implicitly_wait(1)
         meaning_search.clear()
         browser.implicitly_wait(1)
         meaning_search.click()
-        sleep(0.1)
-        meaning_search = browser.find_element(By.CSS_SELECTOR, '#thesinput')
-        browser.implicitly_wait(1)
-        meaning_search.clear()
-        browser.implicitly_wait(1)
-        meaning_search.click()
-        browser.implicitly_wait(1)
+        sleep(0.4)
         # 검색어 입력
         meaning_search.send_keys(i)
         browser.implicitly_wait(1)
         meaning_search.send_keys(Keys.ENTER)
         browser.implicitly_wait(1)
         # 크롤링할 부분 선택
-        sleep(0.1)
+        sleep(0.6)
         synonym = browser.find_element(By.CSS_SELECTOR, '#zone1 > div > table > tbody > tr > td:nth-child(1)').text
 
-        sleep(0.1)
-        browser.implicitly_wait(1)
+        sleep(0.4)
+        browser.implicitly_wait(5)
+
 
         synonym = browser.find_element(By.CSS_SELECTOR, '#zone1 > div > table > tbody > tr > td:nth-child(1)').text
         limit_index = synonym.find('6')
         synonym = synonym[:limit_index]
         browser.implicitly_wait(1)
+
         # synonyms에 의미 저장
-        sleep(0.1)
+        sleep(0.4)
         synonyms.append(synonym)
         browser.implicitly_wait(1)
 
@@ -89,7 +85,7 @@ browser.quit()
 
 # 엑셀에 입력
 
-num2=5000 # 상황에 맞게 바꾸기
+num2 = 2  # 상황에 맞게 바꾸기
 for i in synonyms:
     ws.cell(row=num2, column=8, value=i)
     num2+=1
